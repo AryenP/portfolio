@@ -9,24 +9,27 @@ html {
 }
 
 body {
-  /* Set line height to 1.5 times the font size
-     and use the OS's UI font as the website font
-   */
   font: 100%/1.5 system-ui;
-  width: min(100% - 2em, 100ch);
-  margin-inline: auto;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  color: #1d1d1f;
+  background: #fbfaf7;
+  width: min(100% - 2rem, 72ch);
+  margin: 0 auto;
+  padding: 1.25rem 0 3rem;
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 0.35em;
+  gap: 0.55rem;
+  margin-bottom: 2rem;
 }
 
-a {
-  overflow-wrap: anywhere;
+nav a {
+  color: #174ea6;
+}
+
+main {
+  display: block;
 }
 
 h1,
@@ -34,58 +37,83 @@ h2,
 h3,
 p,
 li {
-  max-width: 100%;
   overflow-wrap: anywhere;
-  word-break: break-word;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  border-top: 1px solid #ddd7ca;
+  font-size: 1.35rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+h3 {
+  margin-bottom: 0.25rem;
+}
+
+article + article {
+  margin-top: 1.5rem;
+}
+
+ul {
+  padding-left: 1.25rem;
+}
+
+li + li {
+  margin-top: 0.35rem;
+}
+
+a {
+  color: #174ea6;
+}
+
+.profile-photo {
+  display: block;
+  margin: 1rem 0 1.5rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.button-link {
+  display: inline-block;
+  border: 1px solid #174ea6;
+  border-radius: 0.35rem;
+  padding: 0.45rem 0.7rem;
+  text-decoration: none;
 }
 
 label {
   display: block;
-  margin-block: 0.75em;
+  margin-block: 0.9rem;
 }
 
 input,
 textarea {
   display: block;
   width: 100%;
-  max-width: 40em;
+  max-width: 42rem;
+  margin-top: 0.25rem;
+  padding: 0.45rem;
+  font: inherit;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+button {
+  font: inherit;
+  padding: 0.45rem 0.75rem;
 }
 
 @media (max-width: 600px) {
   body {
-    font-size: 0.95rem;
-    width: min(calc(100vw - 2em), 34ch);
+    width: min(100% - 1.5rem, 36ch);
   }
 
   nav {
-    font-size: 0.9rem;
-  }
-
-  a,
-  h3,
-  p,
-  li {
-    word-break: break-all;
-  }
-
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  h2 {
-    font-size: 1.45rem;
-  }
-
-  h3 {
-    font-size: 1.15rem;
-  }
-
-  ul {
-    padding-left: 1.25em;
+    gap: 0.4rem;
   }
 }
