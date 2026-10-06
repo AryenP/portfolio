@@ -1,0 +1,91 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  /* Set line height to 1.5 times the font size
+     and use the OS's UI font as the website font
+   */
+  font: 100%/1.5 system-ui;
+  width: min(100% - 2em, 100ch);
+  margin-inline: auto;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.35em;
+}
+
+a {
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3,
+p,
+li {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+label {
+  display: block;
+  margin-block: 0.75em;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  max-width: 40em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.95rem;
+    width: min(calc(100vw - 2em), 34ch);
+  }
+
+  nav {
+    font-size: 0.9rem;
+  }
+
+  a,
+  h3,
+  p,
+  li {
+    word-break: break-all;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+  }
+
+  ul {
+    padding-left: 1.25em;
+  }
+}
