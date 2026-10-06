@@ -7,69 +7,97 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <nav><a href="../">Home</a> | <a href="../projects/">Projects</a> | <a href="../resume/">Resume</a> | <a href="../contact/">Contact</a> | <a href="https://github.com/AryenP" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
-  <header>
-    <h1>Aryen Palkar</h1>
-    <p>San Diego, CA · <a href="mailto:aryen.ronenpalkar@gmail.com">aryen.ronenpalkar@gmail.com</a> · <a href="https://github.com/AryenP" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://linkedin.com/in/aryenp" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
-  </header>
+  <nav>
+    <a href="../">Home</a>
+    <a href="../projects/">Projects</a>
+    <a href="../resume/">Resume</a>
+    <a href="../contact/">Contact</a>
+    <a href="https://github.com/aryenp" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </nav>
 
-  <section>
-    <h2>Education</h2>
-    <article>
-      <h3>University of California, San Diego</h3>
-      <p>B.S. Data Science, Halıcıoğlu Data Science Institute · Expected <time datetime="2028-06">June 2028</time></p>
-    </article>
-  </section>
+  <main>
+    <header>
+      <h1>Resume</h1>
+      <p>
+        Aryen Palkar · San Diego, CA ·
+        <a href="mailto:aryen.ronenpalkar@gmail.com">aryen.ronenpalkar@gmail.com</a> ·
+        <a href="https://github.com/aryenp" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+        <a href="https://linkedin.com/in/aryenp" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </header>
 
-  <section>
-    <h2>Experience</h2>
-    <article>
-      <header>
-        <h3>AI Engineer, Engineers for Exploration (UC San Diego)</h3>
-        <p>Mangrove Monitoring with Scripps Institution of Oceanography · <time datetime="2026-09">Sept 2026</time> – Present</p>
-      </header>
+    <section>
+      <h2>Education</h2>
+      <article>
+        <h3>University of California, San Diego</h3>
+        <p>B.S. Data Science, Halicioglu Data Science Institute · Expected <time datetime="2028-06">June 2028</time></p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <article>
+        <header>
+          <h3>Engineers for Exploration, UC San Diego</h3>
+          <p>AI Engineer, Mangrove Monitoring with Scripps Institution of Oceanography · <time datetime="2026-09">Sept 2026</time> to present</p>
+        </header>
+        <ul>
+          <li>Designed and deployed a Python REST API on AWS for a PyTorch computer-vision model.</li>
+          <li>Used ONNX Runtime and INT8 quantization to cut p95 latency from 410ms to 155ms.</li>
+          <li>Built a LangChain RAG pipeline over six years of field survey reports for natural-language querying.</li>
+          <li>Trained a U-Net segmentation model on 18,400 labeled satellite tiles, raising validation IoU from 0.71 to 0.78.</li>
+        </ul>
+      </article>
+
+      <article>
+        <header>
+          <h3>San Diego Supercomputer Center, UC San Diego</h3>
+          <p>AI Engineer, ML Systems Group · <time datetime="2026-03">Mar 2026</time> to <time datetime="2026-09">Sept 2026</time></p>
+        </header>
+        <ul>
+          <li>Deployed and monitored LLM inference services on shared GPU infrastructure with vLLM, Docker, and Kubernetes.</li>
+          <li>Reduced p95 latency from 290ms to 130ms on an endpoint serving about 34,000 requests per day.</li>
+          <li>Built a Python evaluation harness that caught six model regressions before deployment.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <article>
+        <h3>LLM Inference and Evaluation Platform</h3>
+        <p>
+          Built a vLLM and FastAPI serving stack with Docker on AWS. Added AWQ
+          quantization, prefix caching, and an automated LangGraph evaluation workflow.
+        </p>
+      </article>
+
+      <article>
+        <h3>Edge Object Detection on NVIDIA Jetson</h3>
+        <p>
+          Deployed a YOLO object-detection model with TensorRT INT8 quantization,
+          sustaining 27 FPS at 11W for field inference without a cloud connection.
+        </p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
       <ul>
-        <li>Deployed a Python REST API on AWS serving a PyTorch computer-vision model; ONNX Runtime + INT8 quantization cut p95 latency from 410ms to 155ms.</li>
-        <li>Built a LangChain RAG pipeline over six years of field survey reports for natural-language queries.</li>
-        <li>Trained a U-Net segmentation model on 18,400 satellite tiles, raising validation IoU from 0.71 to 0.78.</li>
+        <li><strong>Languages and libraries:</strong> Python, C++, SQL, NumPy, pandas, R, Bash</li>
+        <li><strong>AI and ML:</strong> PyTorch, TensorFlow, Hugging Face Transformers, LangChain, LangGraph, RAG, NLP, computer vision</li>
+        <li><strong>Inference and serving:</strong> vLLM, TensorRT-LLM, ONNX Runtime, Triton, INT8/FP8/AWQ quantization</li>
+        <li><strong>Cloud and DevOps:</strong> AWS, Docker, Kubernetes, FastAPI, REST APIs, GitHub Actions, CI/CD</li>
       </ul>
-    </article>
-    <article>
-      <header>
-        <h3>AI Engineer, San Diego Supercomputer Center (ML Systems Group)</h3>
-        <p><time datetime="2026-03">Mar 2026</time> – <time datetime="2026-09">Sept 2026</time></p>
-      </header>
+    </section>
+
+    <section>
+      <h2>Open Source and Awards</h2>
       <ul>
-        <li>Deployed LLM inference services with vLLM, Docker and Kubernetes, cutting p95 latency from 290ms to 130ms at ~34,000 requests/day.</li>
-        <li>Designed a Python evaluation harness gating releases on accuracy and latency, catching six regressions.</li>
+        <li>4 merged pull requests across vLLM, Hugging Face Transformers, and UCSD-E4E/ml-mangrove</li>
+        <li>1st Place, De Anza Annual Hackathon, OpenAI-sponsored, 400+ competitors</li>
       </ul>
-    </article>
-  </section>
-
-  <section>
-    <h2>Projects</h2>
-    <article>
-      <h3>LLM Inference &amp; Evaluation Platform</h3>
-      <p>vLLM, FastAPI and Docker on AWS; AWQ quantization and prefix caching brought time-to-first-token from 840ms to 310ms.</p>
-    </article>
-    <article>
-      <h3>Edge Object Detection on NVIDIA Jetson</h3>
-      <p>YOLO with TensorRT INT8 quantization, sustaining 27 FPS at 11W.</p>
-    </article>
-  </section>
-
-  <section>
-    <h2>Skills</h2>
-    <ul>
-      <li><strong>Languages:</strong> Python, C++, SQL, R, Bash</li>
-      <li><strong>AI/ML:</strong> PyTorch, TensorFlow, Hugging Face, LangChain, LangGraph, RAG</li>
-      <li><strong>Cloud &amp; DevOps:</strong> AWS, Docker, Kubernetes, FastAPI, GitHub Actions</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Awards</h2>
-    <p>1st Place, De Anza Annual Hackathon (OpenAI-sponsored), 400+ competitors</p>
-  </section>
+    </section>
+  </main>
 </body>
 </html>

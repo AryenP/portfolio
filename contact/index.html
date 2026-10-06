@@ -7,13 +7,27 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <nav><a href="../">Home</a> | <a href="../projects/">Projects</a> | <a href="../resume/">Resume</a> | <a href="../contact/">Contact</a> | <a href="https://github.com/AryenP" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
-  <h1>Contact</h1>
-  <form action="mailto:aryen.ronenpalkar@gmail.com" method="POST" enctype="text/plain">
-    <label>Email <input type="email" name="email"></label>
-    <label>Subject <input name="subject"></label>
-    <label>Message <textarea name="body"></textarea></label>
-    <button>Submit</button>
-  </form>
+  <nav>
+    <a href="../">Home</a>
+    <a href="../projects/">Projects</a>
+    <a href="../resume/">Resume</a>
+    <a href="../contact/">Contact</a>
+    <a href="https://github.com/aryenp" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </nav>
+
+  <main>
+    <h1>Contact</h1>
+    <p>
+      The fastest way to reach me is email. This form opens your mail app with the
+      message filled in.
+    </p>
+
+    <form action="mailto:aryen.ronenpalkar@gmail.com" method="POST" enctype="text/plain">
+      <label>Email <input type="email" name="email" autocomplete="email"></label>
+      <label>Subject <input name="subject"></label>
+      <label>Message <textarea name="body" rows="6"></textarea></label>
+      <button>Send</button>
+    </form>
+  </main>
 </body>
 </html>
