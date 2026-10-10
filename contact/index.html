@@ -11,7 +11,7 @@
     <a href="../">Home</a>
     <a href="../projects/">Projects</a>
     <a href="../resume/">Resume</a>
-    <a href="../contact/">Contact</a>
+    <a class="current" href="../contact/" aria-current="page">Contact</a>
     <a href="https://github.com/aryenp" target="_blank" rel="noopener noreferrer">GitHub</a>
   </nav>
 
@@ -23,10 +23,22 @@
     </p>
 
     <form action="mailto:aryen.ronenpalkar@gmail.com" method="POST" enctype="text/plain">
-      <label>Email <input type="email" name="email" autocomplete="email"></label>
-      <label>Subject <input name="subject"></label>
-      <label>Message <textarea name="body" rows="6"></textarea></label>
-      <button>Send</button>
+      <label>
+        <span>Email</span>
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+
+      <label>
+        <span>Subject</span>
+        <input name="subject" required>
+      </label>
+
+      <label>
+        <span>Message</span>
+        <textarea name="body" rows="6" required></textarea>
+      </label>
+
+      <button type="submit">Send</button>
     </form>
   </main>
 </body>
