@@ -10,13 +10,13 @@
   <nav>
     <a href="../">Home</a>
     <a href="../projects/">Projects</a>
-    <a href="../resume/">Resume</a>
+    <a class="current" href="../resume/" aria-current="page">Resume</a>
     <a href="../contact/">Contact</a>
     <a href="https://github.com/aryenp" target="_blank" rel="noopener noreferrer">GitHub</a>
   </nav>
 
-  <main>
-    <header>
+  <main class="resume">
+    <header class="resume-header">
       <h1>Resume</h1>
       <p>
         Aryen Palkar · San Diego, CA ·
@@ -83,7 +83,7 @@
 
     <section>
       <h2>Technical Skills</h2>
-      <ul>
+      <ul class="skill-list">
         <li><strong>Languages and libraries:</strong> Python, C++, SQL, NumPy, pandas, R, Bash</li>
         <li><strong>AI and ML:</strong> PyTorch, TensorFlow, Hugging Face Transformers, LangChain, LangGraph, RAG, NLP, computer vision</li>
         <li><strong>Inference and serving:</strong> vLLM, TensorRT-LLM, ONNX Runtime, Triton, INT8/FP8/AWQ quantization</li>
