@@ -222,6 +222,22 @@ button:focus-visible {
   margin: 0;
 }
 
+.projects h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.projects h2 a:hover,
+.projects h2 a:focus-visible {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.projects .project-link {
+  margin-block: 1rem 0;
+  font-weight: 600;
+}
+
 .projects img {
   display: block;
   width: 100%;
