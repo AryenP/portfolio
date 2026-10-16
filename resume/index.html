@@ -33,25 +33,32 @@
       <article>
         <header>
           <h3>Engineers for Exploration, UC San Diego</h3>
-          <p>AI Engineer, Mangrove Monitoring with Scripps Institution of Oceanography · <time datetime="2026-09">Sept 2026</time> to present</p>
+          <p>Student Researcher, Mangrove Monitoring with Scripps Institution of Oceanography · <time datetime="2026-09">Sept 2026</time> to present</p>
         </header>
         <ul>
-          <li>Designed and deployed a Python REST API on AWS for a PyTorch computer-vision model.</li>
-          <li>Used ONNX Runtime and INT8 quantization to cut p95 latency from 410ms to 155ms.</li>
-          <li>Built a LangChain RAG pipeline over six years of field survey reports for natural-language querying.</li>
-          <li>Trained a U-Net segmentation model on 18,400 labeled satellite tiles, raising validation IoU from 0.71 to 0.78.</li>
+          <li>Working on machine learning over satellite and drone imagery to estimate mangrove coverage in Baja California, on a team run with the Aburto Lab at Scripps Institution of Oceanography.</li>
         </ul>
       </article>
 
       <article>
         <header>
-          <h3>San Diego Supercomputer Center, UC San Diego</h3>
-          <p>AI Engineer, ML Systems Group · <time datetime="2026-03">Mar 2026</time> to <time datetime="2026-09">Sept 2026</time></p>
+          <h3>Stealth</h3>
+          <p>Founder and Quantitative Developer · <time datetime="2024-06">June 2024</time> to present</p>
         </header>
         <ul>
-          <li>Deployed and monitored LLM inference services on shared GPU infrastructure with vLLM, Docker, and Kubernetes.</li>
-          <li>Reduced p95 latency from 290ms to 130ms on an endpoint serving about 34,000 requests per day.</li>
-          <li>Built a Python evaluation harness that caught six model regressions before deployment.</li>
+          <li>Designed Python trading algorithms (ARIMA, Bollinger Bands, VWAP, linear regression) on S&amp;P 500 equities, reaching 23% ROI.</li>
+          <li>Integrated Polygon.io real-time market feeds and automated reporting across S&amp;P 500 equities.</li>
+        </ul>
+      </article>
+
+      <article>
+        <header>
+          <h3>Aaji Care</h3>
+          <p>Data Scientist · <time datetime="2022-06">June 2022</time> to present</p>
+        </header>
+        <ul>
+          <li>Built and deployed a facial-recognition system detecting pain, anxiety and fatigue in elderly patients from expression and body-language cues, surfacing conditions patients did not self-report.</li>
+          <li>Leading technical planning for the organisation's first US care center.</li>
         </ul>
       </article>
     </section>
@@ -60,35 +67,35 @@
       <h2>Projects</h2>
       <article>
         <h3>LLM Inference and Evaluation Platform</h3>
-        <p>
-          Built a vLLM and FastAPI serving stack with Docker on AWS. Added AWQ
-          quantization, prefix caching, and an automated LangGraph evaluation workflow.
-        </p>
+        <ul>
+          <li>Cut time-to-first-token from 165 ms to 107 ms and inter-token latency from 28.8 ms to 10.3 ms on Qwen3-8B by serving a 4-bit AWQ checkpoint in place of BF16 on a single L40S, raising sustained throughput from 6.31 to 7.62 requests/sec.</li>
+          <li>Priced the same workload against hosted Qwen3-8B on 6 Oct 2026: $0.040 per 1,000 queries self-hosted at 64 concurrent requests against $0.178 for the cheapest published API, a 4.5x gap that inverts below 1.70 requests/sec sustained.</li>
+          <li>Measured hybrid BM25 plus dense retrieval against dense alone over 12,000 arXiv abstracts and found no improvement, with recall@5 moving from 0.700 to 0.693, and reported the null result rather than dropping the comparison.</li>
+          <li>Wired the evaluation into GitHub Actions so a retrieval change dropping recall@1 more than 0.01 below the recorded baseline fails the build.</li>
+        </ul>
       </article>
 
       <article>
-        <h3>Edge Object Detection on NVIDIA Jetson</h3>
-        <p>
-          Deployed a YOLO object-detection model with TensorRT INT8 quantization,
-          sustaining 27 FPS at 11W for field inference without a cloud connection.
-        </p>
+        <h3>PhotoRevive AI</h3>
+        <ul>
+          <li>Trained and fine-tuned convolutional networks to repair scratches and colorize black-and-white photographs; curated the dataset, built the interface, and field-tested with the Sunnyvale Senior Center.</li>
+        </ul>
       </article>
     </section>
 
     <section>
       <h2>Technical Skills</h2>
       <ul class="skill-list">
-        <li><strong>Languages and libraries:</strong> Python, C++, SQL, NumPy, pandas, R, Bash</li>
-        <li><strong>AI and ML:</strong> PyTorch, TensorFlow, Hugging Face Transformers, LangChain, LangGraph, RAG, NLP, computer vision</li>
-        <li><strong>Inference and serving:</strong> vLLM, TensorRT-LLM, ONNX Runtime, Triton, INT8/FP8/AWQ quantization</li>
-        <li><strong>Cloud and DevOps:</strong> AWS, Docker, Kubernetes, FastAPI, REST APIs, GitHub Actions, CI/CD</li>
+        <li><strong>Languages and libraries:</strong> Python, SQL, C++, R, JavaScript, Bash, NumPy, pandas, scikit-learn, Matplotlib</li>
+        <li><strong>Inference and serving:</strong> vLLM, AWQ/INT4 quantization, continuous batching, paged KV cache, TTFT/ITL/throughput benchmarking</li>
+        <li><strong>LLM systems and evaluation:</strong> RAG, hybrid retrieval, reciprocal rank fusion, bge-m3 embeddings, cross-encoder reranking, pgvector/HNSW, recall@k, MRR, nDCG, LLM-as-judge faithfulness, regression gating</li>
+        <li><strong>Infrastructure:</strong> Docker, GitHub Actions, PostgreSQL, FastAPI, Linux, Git, rented GPU provisioning</li>
       </ul>
     </section>
 
     <section>
-      <h2>Open Source and Awards</h2>
+      <h2>Awards</h2>
       <ul>
-        <li>4 merged pull requests across vLLM, Hugging Face Transformers, and UCSD-E4E/ml-mangrove</li>
         <li>1st Place, De Anza Annual Hackathon, OpenAI-sponsored, 400+ competitors</li>
       </ul>
     </section>
