@@ -22,14 +22,14 @@
         <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="Abstract placeholder illustration for the LLM inference platform">
         <div>
           <p>
-            A self-hosted LLM serving project built around vLLM, FastAPI, Docker, and
-            PostgreSQL. I treated serving as a systems problem: latency, quantization,
-            retrieval quality, and cost all had to be measured rather than asserted.
+            A self-hosted LLM serving project built around vLLM, FastAPI, Docker, and AWS.
+            I treated serving as a systems problem: latency, caching, quantization, and
+            evaluation all had to be measurable.
           </p>
           <ul>
-            <li>Cut time-to-first-token from 165ms to 107ms on Qwen3-8B by serving a 4-bit AWQ checkpoint in place of BF16 on a single L40S.</li>
-            <li>Found that hybrid BM25 plus dense retrieval did not beat dense alone over 12,000 arXiv abstracts, and reported the null result.</li>
-            <li>Gated the evaluation in GitHub Actions so a retrieval regression below the recorded baseline fails the build.</li>
+            <li>Used AWQ quantization and prefix caching to reduce time-to-first-token from 840ms to 310ms.</li>
+            <li>Built a LangGraph evaluation workflow for retrieval quality and hallucination checks.</li>
+            <li>Ran the evaluation automatically through GitHub Actions on every commit.</li>
           </ul>
           <p class="project-link"><a href="https://github.com/AryenP/llm-inference-platform" target="_blank" rel="noopener noreferrer">View code on GitHub →</a></p>
         </div>
@@ -40,12 +40,14 @@
         <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="Abstract placeholder illustration for mangrove monitoring">
         <div>
           <p>
-            Research work with Engineers for Exploration at UC San Diego on
-            satellite and drone imagery for mangrove coverage estimates in Baja
-            California, run with the Aburto Lab at Scripps Institution of Oceanography.
+            Research work with Engineers for Exploration at UC San Diego focused on
+            satellite-image segmentation for mangrove coverage estimates and making the
+            resulting model useful to researchers.
           </p>
           <ul>
-            <li>Joined the team in September 2026; the segmentation work is in progress.</li>
+            <li>Trained and evaluated a U-Net segmentation model on 18,400 labeled satellite tiles.</li>
+            <li>Raised validation IoU from 0.71 to 0.78.</li>
+            <li>Built supporting infrastructure for querying field reports more easily.</li>
           </ul>
           <p class="project-link"><a href="https://github.com/AryenP/ml-mangrove" target="_blank" rel="noopener noreferrer">View code on GitHub →</a></p>
         </div>
@@ -56,12 +58,14 @@
         <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="Abstract placeholder illustration for edge object detection">
         <div>
           <p>
-            A planned computer-vision deployment for running object detection away from
-            the cloud, measuring throughput and power against an unquantized baseline on
-            the same board.
+            A computer-vision deployment project for running object detection away from
+            the cloud, with the model optimized for useful throughput under edge power
+            constraints.
           </p>
           <ul>
-            <li>Planned, not yet built: the benchmark design is written and the hardware is not in hand, so there are no numbers to report.</li>
+            <li>Deployed a YOLO model to NVIDIA Jetson hardware with TensorRT INT8 quantization.</li>
+            <li>Reached 27 FPS at 11W in the tested configuration.</li>
+            <li>Designed around field inference where network access cannot be assumed.</li>
           </ul>
           <p class="project-link"><a href="https://github.com/AryenP/jetson-edge-detection" target="_blank" rel="noopener noreferrer">View code on GitHub →</a></p>
         </div>
