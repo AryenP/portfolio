@@ -1,0 +1,93 @@
+[
+  {
+    "title": "LLM Inference and Evaluation Platform",
+    "year": "2026",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "A self-hosted LLM serving project built around vLLM, FastAPI, Docker, and AWS. I treated serving as a systems problem: latency, caching, quantization, and evaluation all had to be measurable.",
+    "url": "https://github.com/AryenP/llm-inference-platform"
+  },
+  {
+    "title": "Mangrove Monitoring with Scripps",
+    "year": "2026",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Research work with Engineers for Exploration at UC San Diego focused on satellite-image segmentation for mangrove coverage estimates and making the resulting model useful to researchers.",
+    "url": "https://github.com/AryenP/ml-mangrove"
+  },
+  {
+    "title": "Edge Object Detection on NVIDIA Jetson",
+    "year": "2026",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "A computer-vision deployment project for running object detection away from the cloud, with the model optimized for useful throughput under edge power constraints.",
+    "url": "https://github.com/AryenP/jetson-edge-detection"
+  },
+  {
+    "title": "GPU MODE Kernels",
+    "year": "2026",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "CUDA kernels for the GPU MODE leaderboards on NVIDIA B200, with a tuning log of every change I measured, including the ones that didn't help.",
+    "url": "https://github.com/AryenP/gpu-mode-kernels"
+  },
+  {
+    "title": "Persuasive or Deceptive? (DSC 106 Project 2)",
+    "year": "2026",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Two charts from the same World Bank CO2 data, one arguing China now drives the climate crisis and one arguing the United States does, with every design choice scored from deceptive to earnest.",
+    "url": "https://aryenp.github.io/dsc106-project2/"
+  },
+  {
+    "title": "Whole Foods and Ultra-Processed Food (DSC 106 Project 1)",
+    "year": "2026",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "An expository visualization comparing how much of Whole Foods, Walmart and Target's products are ultra-processed, and how much of Whole Foods' lead comes from which aisles it stocks."
+  },
+  {
+    "title": "Medical Q&A Chatbot",
+    "year": "2026",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "A medical question-answering chatbot built by fine-tuning Mistral-7B with QLoRA and serving it through a FastAPI app with streaming responses."
+  },
+  {
+    "title": "HireScope",
+    "year": "2026",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "A job-market tool that collects internship postings and scores how likely each one is to be a ghost job."
+  },
+  {
+    "title": "AutoClicker Record and Replay",
+    "year": "2026",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "A Chrome extension that records a sequence of clicks on any webpage and replays it.",
+    "url": "https://aryenp.github.io/autoclicker-record-replay/"
+  },
+  {
+    "title": "Recipes and Ratings (DSC 80 Project 4)",
+    "year": "2026",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "An analysis of recipe data and user ratings for DSC 80, from data cleaning through hypothesis testing and a predictive model."
+  },
+  {
+    "title": "k-Nearest Neighbors (DSC 40B)",
+    "year": "2026",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "A k-nearest-neighbors implementation for DSC 40B, focused on the algorithm's running time."
+  },
+  {
+    "title": "Business Consultancy Website",
+    "year": "2025",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "A website for a business consultancy, built and styled from scratch."
+  },
+  {
+    "title": "Doubly Linked Lists (Foothill CS 3B)",
+    "year": "2024",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "A doubly linked list implementation for CS 3B at Foothill College."
+  },
+  {
+    "title": "PhotonVision for FIRST Robotics",
+    "year": "2023",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "A working copy of PhotonVision, the open-source computer vision system used on FIRST Robotics Competition robots.",
+    "url": "https://github.com/AryenP/2023-PhotonVision"
+  }
+]
