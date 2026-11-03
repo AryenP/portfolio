@@ -3,21 +3,21 @@
     "title": "LLM Inference and Evaluation Platform",
     "year": "2026",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "A self-hosted LLM serving project built around vLLM, FastAPI, Docker, and AWS. I treated serving as a systems problem: latency, caching, quantization, and evaluation all had to be measurable.",
+    "description": "A self-hosted LLM serving project built around vLLM, FastAPI, Docker, and PostgreSQL. I treated serving as a systems problem: latency, quantization, retrieval quality, and cost all had to be measured rather than asserted.",
     "url": "https://github.com/AryenP/llm-inference-platform"
   },
   {
     "title": "Mangrove Monitoring with Scripps",
     "year": "2026",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Research work with Engineers for Exploration at UC San Diego focused on satellite-image segmentation for mangrove coverage estimates and making the resulting model useful to researchers.",
+    "description": "Research work with Engineers for Exploration at UC San Diego on satellite and drone imagery for mangrove coverage estimates in Baja California, run with the Aburto Lab at Scripps Institution of Oceanography.",
     "url": "https://github.com/AryenP/ml-mangrove"
   },
   {
     "title": "Edge Object Detection on NVIDIA Jetson",
     "year": "2026",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "A computer-vision deployment project for running object detection away from the cloud, with the model optimized for useful throughput under edge power constraints.",
+    "description": "YOLOv8n on a Jetson Orin Nano with TensorRT FP16 and INT8, measured for latency, accuracy and power. The pipeline and calibration are written and tested on CPU; the hardware isn't in hand yet, so there are no numbers to report.",
     "url": "https://github.com/AryenP/jetson-edge-detection"
   },
   {
