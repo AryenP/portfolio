@@ -1,5 +1,12 @@
 [
   {
+    "title": "Bikewatching (DSC 106 Lab 7)",
+    "year": "2026",
+    "image": "https://aryenp.github.io/portfolio/images/bikewatching.jpg",
+    "description": "A Mapbox and D3 map of Bluebikes traffic in Boston and Cambridge from about 260,000 rides in March 2024. Circle size is trips per station, colour is arrivals against departures, and a slider filters by time of day.",
+    "url": "https://aryenp.github.io/bikewatching/"
+  },
+  {
     "title": "LLM Inference and Evaluation Platform",
     "year": "2026",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
