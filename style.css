@@ -452,3 +452,137 @@ button:focus-visible {
     flex-direction: column;
   }
 }
+
+/* Lab 6: meta page. Summary stats, commit scatterplot, tooltip and brush. */
+.stats {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: auto auto;
+  grid-auto-columns: 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0 0 2rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.8rem;
+}
+
+/* The language breakdown is empty until something is brushed. */
+.stats:empty {
+  display: none;
+}
+
+.stats dt {
+  grid-row: 1;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted, GrayText);
+}
+
+.stats dd {
+  grid-row: 2;
+  margin: 0;
+  font-size: 1.6em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#chart {
+  margin-block: 1rem;
+}
+
+.gridlines .domain {
+  display: none;
+}
+
+.gridlines .tick line {
+  stroke-opacity: 0.35;
+}
+
+/* Without transform-box the dots would grow from their top left corner. */
+.dots circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.dots circle:hover {
+  transform: scale(1.5);
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+/* .info is the two-column layout, .tooltip is the floating box, so either
+   one can be reused without the other. */
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25em 1em;
+  margin: 0;
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info dt {
+  color: var(--color-muted, GrayText);
+}
+
+dl.info dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  padding: 0.75em 1em;
+  background: color-mix(in oklch, canvas 85%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 0.6rem;
+  box-shadow: 0 2px 10px oklch(0% 0 0 / 15%);
+  backdrop-filter: blur(6px);
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 */
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: canvastext;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+#selection-count {
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .stats {
+    grid-auto-flow: row;
+    grid-template-rows: none;
+    grid-template-columns: 1fr auto;
+  }
+
+  .stats dt,
+  .stats dd {
+    grid-row: auto;
+  }
+
+  .stats dd {
+    font-size: 1.1em;
+    text-align: right;
+  }
+}
