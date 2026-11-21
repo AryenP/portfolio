@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 // The brush needs the scales after the chart is drawn, so they live out here
 // instead of inside renderScatterPlot.
@@ -50,11 +51,15 @@ function processCommits(data) {
       });
 
       return ret;
-    });
+    })
+    // Lab 8 Step 3.3: the story walks through commits in order, so sort them.
+    .sort((a, b) => a.datetime - b.datetime);
 }
 
 // Step 1.3: summary stats.
+// Lab 8: called again whenever the slider moves, so clear the old box first.
 function renderCommitInfo(data, commits) {
+  d3.select('#stats').html('');
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
   dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
@@ -151,33 +156,45 @@ function renderScatterPlot(data, commits) {
     .axisLeft(yScale)
     .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
 
+  // Lab 8 Step 1.2: classes so updateScatterPlot can find the axes again.
   svg
     .append('g')
     .attr('transform', `translate(0, ${usableArea.bottom})`)
+    .attr('class', 'x-axis')
     .call(xAxis);
 
   svg
     .append('g')
     .attr('transform', `translate(${usableArea.left}, 0)`)
+    .attr('class', 'y-axis')
     .call(yAxis);
 
-  // Square root scale, so a commit with twice the lines gets twice the area,
-  // not twice the radius.
+  svg.append('g').attr('class', 'dots');
+  drawDots(svg, commits);
+
+  createBrushSelector(svg);
+}
+
+// Square root scale, so a commit with twice the lines gets twice the area,
+// not twice the radius. Shared by the first render and every update.
+function drawDots(svg, commits) {
   const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
   const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]);
 
   // Biggest first: small dots are drawn last, on top, and stay hoverable.
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
 
-  const dots = svg.append('g').attr('class', 'dots');
-
-  dots
+  svg
+    .select('g.dots')
     .selectAll('circle')
-    .data(sortedCommits)
+    // Lab 8 Step 1.3: key by commit id so each commit keeps its own circle.
+    .data(sortedCommits, (d) => d.id)
     .join('circle')
     .attr('cx', (d) => xScale(d.datetime))
     .attr('cy', (d) => yScale(d.hourFrac))
     .attr('r', (d) => rScale(d.totalLines))
+    // Lets the CSS keep the grow-in speed the same for big and small dots.
+    .style('--r', (d) => rScale(d.totalLines))
     .attr('fill', 'steelblue')
     .style('fill-opacity', 0.7)
     .on('mouseenter', (event, commit) => {
@@ -190,15 +207,26 @@ function renderScatterPlot(data, commits) {
       d3.select(event.currentTarget).style('fill-opacity', 0.7);
       updateTooltipVisibility(false);
     });
+}
 
-  createBrushSelector(svg);
+// Lab 8 Step 1.2: redraw the existing chart instead of appending a new svg.
+function updateScatterPlot(data, commits) {
+  const svg = d3.select('#chart').select('svg');
+
+  xScale = xScale.domain(d3.extent(commits, (d) => d.datetime)).nice();
+
+  const xAxisGroup = svg.select('g.x-axis');
+  xAxisGroup.selectAll('*').remove();
+  xAxisGroup.call(d3.axisBottom(xScale));
+
+  drawDots(svg, commits);
 }
 
 // Step 3: tooltip.
 function renderTooltipContent(commit) {
   const link = document.getElementById('commit-link');
   const date = document.getElementById('commit-date');
-  const time = document.getElementById('commit-time');
+  const time = document.getElementById('commit-hour');
   const author = document.getElementById('commit-author');
   const lines = document.getElementById('commit-lines');
 
@@ -265,7 +293,7 @@ function isCommitSelected(selection, commit) {
 
 function renderSelectionCount(selection) {
   const selectedCommits = selection
-    ? commits.filter((d) => isCommitSelected(selection, d))
+    ? filteredCommits.filter((d) => isCommitSelected(selection, d))
     : [];
 
   const countElement = document.querySelector('#selection-count');
@@ -278,7 +306,7 @@ function renderSelectionCount(selection) {
 
 function renderLanguageBreakdown(selection) {
   const selectedCommits = selection
-    ? commits.filter((d) => isCommitSelected(selection, d))
+    ? filteredCommits.filter((d) => isCommitSelected(selection, d))
     : [];
   const container = document.getElementById('language-breakdown');
 
@@ -309,8 +337,121 @@ function renderLanguageBreakdown(selection) {
   }
 }
 
+// Lab 8 Step 2: one dot per line of code, grouped by file, biggest file first.
+const colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+function updateFileDisplay(filteredCommits) {
+  const lines = filteredCommits.flatMap((d) => d.lines);
+  const files = d3
+    .groups(lines, (d) => d.file)
+    .map(([name, lines]) => ({ name, lines }))
+    .sort((a, b) => b.lines.length - a.lines.length);
+
+  const filesContainer = d3
+    .select('#files')
+    .selectAll('div')
+    .data(files, (d) => d.name)
+    .join((enter) =>
+      enter.append('div').call((div) => {
+        div.append('dt');
+        div.append('dd');
+      }),
+    );
+
+  filesContainer
+    .select('dt')
+    .html((d) => `<code>${d.name}</code><small>${d.lines.length} lines</small>`);
+
+  filesContainer
+    .select('dd')
+    .selectAll('div')
+    .data((d) => d.lines)
+    .join('div')
+    .attr('class', 'loc')
+    .attr('style', (d) => `--color: ${colors(d.type)}`);
+}
+
 let data = await loadData();
 let commits = processCommits(data);
 
-renderCommitInfo(data, commits);
+// Lab 8 Step 1.1: the slider goes from 0 to 100, and timeScale turns that
+// percentage into a date between the first and last commit.
+let commitProgress = 100;
+const timeScale = d3
+  .scaleTime()
+  .domain(d3.extent(commits, (d) => d.datetime))
+  .range([0, 100]);
+let commitMaxTime = timeScale.invert(commitProgress);
+let filteredCommits = commits;
+
+const slider = document.getElementById('commit-progress');
+const timeLabel = document.getElementById('commit-time');
+
+// Everything that depends on the cutoff date, in one place, so the slider and
+// the scrolling story stay in sync.
+function updateForTime(maxTime) {
+  commitMaxTime = maxTime;
+  timeLabel.dateTime = maxTime.toISOString();
+  timeLabel.textContent = maxTime.toLocaleString('en', {
+    dateStyle: 'long',
+    timeStyle: 'short',
+  });
+
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  const filteredLines = filteredCommits.flatMap((d) => d.lines);
+
+  renderCommitInfo(filteredLines, filteredCommits);
+  updateScatterPlot(data, filteredCommits);
+  updateFileDisplay(filteredCommits);
+}
+
+function onTimeSliderChange() {
+  commitProgress = Number(slider.value);
+  updateForTime(timeScale.invert(commitProgress));
+}
+
+slider.addEventListener('input', onTimeSliderChange);
+
 renderScatterPlot(data, commits);
+onTimeSliderChange();
+
+// Lab 8 Step 3.2: one paragraph per commit for the scrolling story.
+d3.select('#scatter-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html((d, i) => {
+    const fileCount = d3.rollups(
+      d.lines,
+      (D) => D.length,
+      (d) => d.file,
+    ).length;
+    const when = d.datetime.toLocaleString('en', {
+      dateStyle: 'full',
+      timeStyle: 'short',
+    });
+    const what =
+      i === 0 ? 'my first commit' : i === commits.length - 1 ? 'my latest commit' : 'commit ' + (i + 1);
+    return `
+      <p>On ${when}, I made <a href="${d.url}" target="_blank">${what}</a>.
+      It still owns ${d.totalLines} ${d.totalLines === 1 ? 'line' : 'lines'} across ${fileCount}
+      ${fileCount === 1 ? 'file' : 'files'}.</p>`;
+  });
+
+// Lab 8 Step 3.3: when a commit's paragraph crosses the middle of the screen,
+// show everything up to that commit.
+function onStepEnter(response) {
+  const commit = response.element.__data__;
+  slider.value = timeScale(commit.datetime);
+  commitProgress = Number(slider.value);
+  updateForTime(commit.datetime);
+}
+
+const scroller = scrollama();
+scroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+  })
+  .onStepEnter(onStepEnter);

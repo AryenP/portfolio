@@ -16,13 +16,33 @@
       Stats about the code behind this site, read from its own git history.
     </p>
 
+    <!-- Lab 8 Step 1.1: drag to show the repo as it was at any point -->
+    <div class="time-filter">
+      <label>
+        Show commits until:
+        <input type="range" id="commit-progress" min="0" max="100" value="100">
+      </label>
+      <time id="commit-time"></time>
+    </div>
+
     <div id="stats"></div>
 
     <h2>Commits by time of day</h2>
-    <div id="chart"></div>
+    <p class="page-intro">Scroll through the story on the left and the chart fills in one commit at a time.</p>
 
-    <p id="selection-count">No commits selected</p>
-    <dl id="language-breakdown" class="stats"></dl>
+    <!-- Lab 8 Step 3.1: story on the left, sticky chart on the right -->
+    <div id="scrolly-1">
+      <div id="scatter-story"></div>
+      <div id="scatter-plot">
+        <div id="chart"></div>
+        <p id="selection-count">No commits selected</p>
+        <dl id="language-breakdown" class="stats"></dl>
+      </div>
+    </div>
+
+    <!-- Lab 8 Step 2: one dot per line of code, biggest file first -->
+    <h2>Lines of code by file</h2>
+    <dl id="files"></dl>
 
     <!-- Lab 6: filled in and moved next to the cursor by main.js -->
     <dl id="commit-tooltip" class="info tooltip" hidden>
@@ -35,7 +55,7 @@
       <dd id="commit-date"></dd>
 
       <dt>Time</dt>
-      <dd id="commit-time"></dd>
+      <dd id="commit-hour"></dd>
 
       <dt>Author</dt>
       <dd id="commit-author"></dd>
